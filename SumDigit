@@ -5,8 +5,7 @@ namespace summ
     {
         static void Main(string[] args)
         {
-            int[] arrayOriginal = { }; 
-            int digit = 0;
+            int[] arrayOriginal = { };
             string commandOfUser = "";
 
             while (commandOfUser != "exit")
@@ -15,29 +14,27 @@ namespace summ
 
                 for (int i = 0; i < arrayOriginal.Length; i++)
                 {
-                    arrayToFullArrayOriginal[i+1] = arrayOriginal[i];
+                    arrayToFullArrayOriginal[i + 1] = arrayOriginal[i];
                 }
 
                 Console.Clear();
-                Console.Write("Введите число для добавления в массив: ");
-                arrayToFullArrayOriginal[0] = int.Parse(Console.ReadLine());
-                arrayOriginal = arrayToFullArrayOriginal;
-                Console.Write("\nВведите комманду для продолжения: \nNext \nSum(после нее следует команда Next) \nExit\nКоманда: ");
-                commandOfUser = Console.ReadLine().ToLower();
-                
-                while (commandOfUser != "exit" && commandOfUser != "next" && commandOfUser != "sum")
-                {
-                    Console.Write("\n\nВведите комманду корректно: \nNext \nSum(после нее следует команда Next) \nExit\nКоманда: ");
-                    commandOfUser = Console.ReadLine().ToLower();
-                }
+                Console.Write("Введите комманду(exit или sum) или число, для добавления в массив: ");
+                commandOfUser = Console.ReadLine();
 
-                if (commandOfUser == "sum")
+                if (commandOfUser != "exit" && commandOfUser != "sum")
+                {
+                    arrayToFullArrayOriginal[0] = int.Parse(commandOfUser);
+                    arrayOriginal = arrayToFullArrayOriginal;
+                }
+                else if (commandOfUser == "sum")
                 {
                     Console.Write("\nМассив: ");
+
                     for (int i = 0; i < arrayOriginal.Length; i++)
                     {
                         Console.Write(arrayOriginal[i] + " ");
                     }
+
                     Console.WriteLine("\nСумма элементов в массиве " + arrayOriginal.Sum());
                     Console.WriteLine("\nНажмите любую кнопку для продолжения");
                     Console.ReadKey();
